@@ -15,11 +15,11 @@ try {
     $user = $statement->fetch();
 
     if (sizeof($user) != 0) {
-        setcookie('username', $user['username']);
-        setcookie('firstname', $user['name']);
-        setcookie('lastname', $user['lastname']);
-        setcookie('role', $user['role']);
-        setcookie('position', $user['position']);
+        setcookie('username', $user['username'], time() + 86400);
+        setcookie('firstname', $user['name'], time() + 86400);
+        setcookie('lastname', $user['lastname'], time() + 86400);
+        setcookie('role', $user['role'], time() + 86400);
+        setcookie('position', $user['position'], time() + 86400);
 
         http_response_code(200);
         echo json_encode(["status" => "SUCCESS", "message" => "Успешeн вход", 'username' => $_SESSION['username']]);

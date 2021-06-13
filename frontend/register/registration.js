@@ -14,7 +14,6 @@ btn.addEventListener('click', (event) => {
         document.getElementById('email').style.borderColor = '#C3CDC0'
         document.getElementById('error_email').classList.remove('error')
     }
-    console.log(document.getElementById("password").value);
     if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,10}$'))){
         document.getElementById('error_password').style.display = 'block'
         document.getElementById('password').style.borderColor = '#B0706D'
@@ -85,7 +84,6 @@ btn.addEventListener('click', (event) => {
             .then(response=> {
                 console.log(response.status);
                 if(response.status === 'SUCCESS') {
-                    console.log("here");
                     window.location.replace("../login/login.html");
                 } else {
                     document.getElementById("msg_exists").style.display='block';

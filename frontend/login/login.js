@@ -1,7 +1,5 @@
 const btn = document.getElementById('login-btn');
-console.log("here");
 btn.addEventListener('click', (event) => {
-    console.log("here");
     document.getElementById("msg_exists").style.display = 'none';
 
     var isValid = true;
@@ -33,7 +31,6 @@ btn.addEventListener('click', (event) => {
         password: document.getElementById("password").value,
     };
 
-    console.log(isValid);
     if (isValid) {
 
         fetch('../../backend/api/login.php', {
@@ -48,6 +45,8 @@ btn.addEventListener('click', (event) => {
             .then(response=> {
                 if(response.status === 'ERROR') {
                     document.getElementById("msg_exists").style.display='block';
+                } else {
+                    window.location.replace("../index.html");
                 }
             })
             .then(data=>console.log(data));
