@@ -1,0 +1,104 @@
+form {
+    margin: auto;
+    margin-top: 62px;
+    width: 427px;
+    border: 2px solid;
+    border-color: #000000;
+}
+
+.form-item input {
+    border-color: #C3CDC0;
+    font-size: large;
+}
+
+.form-item {
+    padding-left: 31px;
+}
+
+h1 {
+    padding-left: 40%;
+}
+
+#form1 {
+    padding-top: 31px;
+}
+
+#form3 {
+    padding-bottom: 31px;
+}
+
+input, button, select {
+    box-sizing: border-box;
+    height: 38px;
+    width: 364px;
+}
+
+input, button {
+    border: 2px solid;
+    border-color: #C3CDC0;
+}
+
+select {
+    border: 2px solid;
+    border-color: #ACB6A9;
+    background-color: white;
+    font-size: large;
+}
+
+#role {
+    font-size: large;
+}
+
+#select-position {
+    margin-left: 31px;
+}
+
+button {
+    color: #31408b;
+    background-color: #cfd2e7;
+}
+
+.form-item button:hover {
+    background-color: #19216a;
+    color: white;
+}
+
+.form-item input:hover, select:hover {
+    border-color: #31408b;
+}
+
+#msg_exists {
+    color: #B0706D;
+    margin-left: 31px;
+    margin-bottom: 12px;
+    font-size: large;
+    height: 38px;
+    width: 364px;
+    display: none;
+}
+
+#error_username {
+    background-color: #B0706D;
+    color: white;
+    margin-left: 31px;
+    margin-top: 12px;
+    font-size: large;
+    height: 38px;
+    width: 364px;
+    display: none;
+}
+
+#error_password {
+    background-color: #B0706D;
+    color: white;
+    margin-left: 31px;
+    margin-top: 12px;
+    font-size: large;
+    height: 38px;
+    width: 364px;
+    display: none;
+}
+
+.error {
+    box-sizing: border-box;
+}

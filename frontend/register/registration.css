@@ -16,7 +16,7 @@ form {
 }
 
 h1 {
-    padding-left: 120px;
+    padding-left: 25%;
 }
 
 #form1 {
@@ -98,16 +98,6 @@ button {
     width: 364px;
     display: none;
 }
-
-#success {
-    margin-left: 31px;
-    font-size: large;
-    margin-bottom: 12px;
-    height: 38px;
-    width: 364px;
-    display: none;
-}
-
 
 #error_family_name {
     background-color: #B0706D;

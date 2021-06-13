@@ -1,19 +1,8 @@
-const btn = document.getElementById('register-btn');
+const btn = document.getElementById('login-btn');
 btn.addEventListener('click', (event) => {
     document.getElementById("msg_exists").style.display = 'none';
 
     var isValid = true;
-    if (!document.getElementById("email").value.match(new RegExp('^[a-zA-Z0-9\.-]+@[a-z-]+\\.[a-z]+'))){
-        document.getElementById('error_email').style.display = 'block'
-        document.getElementById('email').style.borderColor = '#B0706D'
-        document.getElementById('error_email').classList.remove("err_hidden");
-        document.getElementById('error_email').classList.add("error");
-        isValid = false;
-    } else {
-        document.getElementById('error_email').style.display = 'none'
-        document.getElementById('email').style.borderColor = '#C3CDC0'
-        document.getElementById('error_email').classList.remove('error')
-    }
     console.log(document.getElementById("password").value);
     if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,10}$'))){
         document.getElementById('error_password').style.display = 'block'
@@ -37,44 +26,17 @@ btn.addEventListener('click', (event) => {
         document.getElementById('username').style.borderColor = '#C3CDC0'
         document.getElementById('error_username').classList.remove('error')
     }
-    if (document.getElementById("name").value.length > 50){
-        document.getElementById('error_name').style.display = 'block'
-        document.getElementById('name').style.borderColor = '#B0706D'
-        document.getElementById('error_name').classList.remove("err_hidden");
-        document.getElementById('error_name').classList.add("error");
-        isValid = false;
-    } else {
-        document.getElementById('error_name').style.display = 'none'
-        document.getElementById('name').style.borderColor = '#C3CDC0'
-        document.getElementById('error_name').classList.remove('error')
-    }
-    if (document.getElementById("family-name").value.length > 50){
-        document.getElementById('error_family_name').style.display = 'block'
-        document.getElementById('family-name').style.borderColor = '#B0706D'
-        document.getElementById('error_family_name').classList.remove("err_hidden");
-        document.getElementById('error_family_name').classList.add("error");
-        isValid = false;
-    } else {
-        document.getElementById('error_family_name').style.display = 'none'
-        document.getElementById('family-name').style.borderColor = '#C3CDC0'
-        document.getElementById('error_family_name').classList.remove('error')
-    }
 
     const formData = {
-        firstname: document.getElementById("name").value,
-        lastname: document.getElementById("family-name").value,
-        email: document.getElementById("email").value,
         username: document.getElementById("username").value,
         password: document.getElementById("password").value,
-        position: document.getElementById("select-position").value,
-        role: "user"
     };
 
     console.log(isValid);
     if (isValid) {
 
         fetch('../../backend/api/register-user.php', {
-            method: 'POST',
+            method: 'GET',
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json'
