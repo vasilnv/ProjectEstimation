@@ -16,27 +16,21 @@ try {
     $statement = $connection->prepare($sql);
 
     $statement->execute(["username"=>$username]);
-    $user = $statement->fetch();
+    $user = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     if (sizeof($user) == 0) {
-//        echo "here";
-
-//        $sql = "INSERT INTO users (name, lastname, username, password, email, role, position, capacity) VALUES (:name, :lastname, :username, :password, :email, 6, 1, 0);";
-        $sql = "INSERT INTO roles (name) VALUES (:name);";
+        $sql = "INSERT INTO users (name, lastname, username, password, email, role, position, capacity) VALUES (:name, :lastname, :username, :password, :email, 6, 1, 0);";
         $db = new DB();
         $connection = $db->getConnection();
         $statement = $connection->prepare($sql);
-//        $statement->execute(["name"=>$firstname, "lastname" => $lastname, "username" => $username, "password" => $password, "email" => $email]);
-        $statement->execute(["name"=>$firstname]);
+        $statement->execute(["name"=>$firstname, "lastname" => $lastname, "username" => $username, "password" => $password, "email" => $email]);
 
         echo json_encode(["status" => "SUCCESS", "message" => "Успешна регистрация"]);
     } else {
-//        echo "here";
-
         http_response_code(400);
         echo json_encode(["status" => "ERROR", "message" => "Грешни подадени данни"]);
     }
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(["status" => "ERROR", "message" => "Грешка при добавяне на продукт"]);
+    echo json_encode(["status" => "ERROR", "message" => "Грешка при регистрация"]);
 }
