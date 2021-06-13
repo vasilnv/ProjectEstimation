@@ -1,9 +1,10 @@
 const btn = document.getElementById('login-btn');
+console.log("here");
 btn.addEventListener('click', (event) => {
+    console.log("here");
     document.getElementById("msg_exists").style.display = 'none';
 
     var isValid = true;
-    console.log(document.getElementById("password").value);
     if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,10}$'))){
         document.getElementById('error_password').style.display = 'block'
         document.getElementById('password').style.borderColor = '#B0706D'
@@ -35,8 +36,8 @@ btn.addEventListener('click', (event) => {
     console.log(isValid);
     if (isValid) {
 
-        fetch('../../backend/api/register-user.php', {
-            method: 'GET',
+        fetch('../../backend/api/login.php', {
+            method: 'POST',
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json'
@@ -45,11 +46,7 @@ btn.addEventListener('click', (event) => {
         })
             .then(response=>response.json())
             .then(response=> {
-                console.log(response.status);
-                if(response.status === 'SUCCESS') {
-                    console.log("here");
-                    window.location.replace("../login/login.html");
-                } else {
+                if(response.status === 'ERROR') {
                     document.getElementById("msg_exists").style.display='block';
                 }
             })
