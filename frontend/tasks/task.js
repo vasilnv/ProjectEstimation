@@ -37,8 +37,6 @@ btnCreate.addEventListener('click', (event) => {
         estimation: document.getElementById("estimation").value
     };
 
-    console.log("here");
-
     if (isValid) {
         fetch('../../backend/api/tasks/create-task.php', {
             method: 'POST',
