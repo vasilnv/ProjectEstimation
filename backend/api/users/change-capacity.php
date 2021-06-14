@@ -1,9 +1,9 @@
 <?php
-//session_start();
+session_start();
 $phpInput = json_decode(file_get_contents('php://input'), true);
 $newCapacity = $phpInput["newCapacity"];
 
-//$userId= $_SESSION['userId'];
+$userId= $_SESSION['userId'];
 
 try {
     require_once ("../../db/db.php");
@@ -12,7 +12,7 @@ try {
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);
 
-    $statement->execute(["capacity" => 2, "userId" => 12]);
+    $statement->execute(["capacity" => $newCapacity, "userId" => $userId]);
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "message" => "Успешна промяна на работните часове"]);
 } catch (PDOException $e) {
