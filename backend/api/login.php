@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once("../db/db.php");
 
 $phpInput = json_decode(file_get_contents('php://input'), true);
@@ -12,14 +14,15 @@ try {
     $statement = $connection->prepare($sql);
 
     $statement->execute(["username" => $username, "password" => $password]);
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    $user = $statement->fetch();
 
     if (sizeof($user) != 0) {
-        setcookie('username', $user['username'], time() + 86400, "/");
-        setcookie('firstname', $user['name'], time() + 86400, "/");
-        setcookie('lastname', $user['lastname'], time() + 86400, "/");
-        setcookie('role', $user['role'], time() + 86400, "/");
-        setcookie('position', $user['position'], time() + 86400, "/");
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['firstname'] = $user['name'];
+        $_SESSION['lastname'] = $user['lastname'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['position'] = $user['position'];
+        $_SESSION['userId'] = $user['id'];
 
         http_response_code(200);
         echo json_encode(["status" => "SUCCESS", "message" => "Успешeн вход"]);
