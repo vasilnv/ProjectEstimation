@@ -22,10 +22,10 @@ try {
         setcookie('position', $user['position'], time() + 86400);
 
         http_response_code(200);
-        echo json_encode(["status" => "SUCCESS", "message" => "Успешeн вход", 'username' => $_SESSION['username']]);
+        echo json_encode(["status" => "SUCCESS", "message" => "Успешeн вход"]);
     } else {
         http_response_code(400);
-        echo json_encode(["status" => "ERROR", "message" => "Грешно подадени данни", 'username' => $phpInput["username"]]);
+        echo json_encode(["status" => "ERROR", "message" => "Грешно подадени данни"]);
     }
 } catch (PDOException $e) {
     http_response_code(500);
