@@ -1,4 +1,3 @@
-"use strict";
 const btnExit = document.getElementById('exit-btn');
 btnExit.addEventListener('click', (event) => {
     event.preventDefault();
@@ -16,7 +15,7 @@ btnTask.addEventListener('click', (event) => {
     window.location.replace("./tasks/task.html")
 });
 
-const btnChangeRole = document.getElementById('create-task-btn');
+const btnChangeRole = document.getElementById('change-role-btn');
 btnChangeRole.addEventListener('click', (event) => {
     event.preventDefault();
     window.location.replace("./users/users.html")
