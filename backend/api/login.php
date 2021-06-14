@@ -12,7 +12,7 @@ try {
     $statement = $connection->prepare($sql);
 
     $statement->execute(["username" => $username, "password" => $password]);
-    $user = $statement->fetch();
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     if (sizeof($user) != 0) {
         setcookie('username', $user['username'], time() + 86400);
