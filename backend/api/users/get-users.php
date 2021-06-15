@@ -3,7 +3,7 @@ require_once("../../db/db.php");
 
 try {
     $db = new DB();
-    $sql = "SELECT name, lastname, username, email, role, position FROM users;";
+    $sql = "SELECT users.name, lastname, username, email, positions.name as position FROM users inner join positions on positions.id = users.position;";
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);
 
