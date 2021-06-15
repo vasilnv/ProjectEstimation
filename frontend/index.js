@@ -8,7 +8,6 @@ const btnProject = document.getElementById('create-project-btn');
 btnProject.addEventListener('click', (event) => {
     event.preventDefault();
     var isValid = true;
-    debugger;
     if (!document.getElementById("project-name").value.match(new RegExp("^[a-zA-Z0-9]{6,50}$"))){
         document.getElementById('error_project_name').style.display = 'block'
         document.getElementById('project-name').style.borderColor = '#B0706D'
