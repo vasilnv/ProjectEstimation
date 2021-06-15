@@ -14,7 +14,7 @@ try {
     $statement = $connection->prepare($sql);
 
     $statement->execute(["username" => $username, "password" => $password]);
-    $user = $statement->fetch();
+    $user = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
 
     if ($user) {
         $_SESSION['username'] = $user['username'];
