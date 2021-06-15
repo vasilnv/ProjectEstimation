@@ -8,7 +8,7 @@ try {
     $username = $phpInput["username"];
     $projectId = $phpInput["project"];
 
-    if (!$_SESSION["role"]) {
+    if (!$_SESSION["role"] || !$_SESSION["userId"]) {
         http_response_code(403);
         echo json_encode(["status" => "UNAUTHORIZED", "message" => "Липсват права!", "statusCode" => 403]);
     }
