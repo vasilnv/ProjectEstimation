@@ -29,31 +29,35 @@ function refresh() {
 
         usersOutsideProject.childNodes.forEach(node => {
             node.addEventListener('click', (event) => {
-                fetch("../../backend/api/projects/add-user-to-project.php", {
-                    method: 'POST',
-                    body: JSON.stringify({username: node.textContent, "project": projectId}),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                
-                refresh();
+                (async () => {
+                    const res = await fetch("../../backend/api/projects/add-user-to-project.php", {
+                        method: 'POST',
+                        body: JSON.stringify({username: node.textContent, "project": projectId}),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    refresh();
+                })();
             });
-        })
+        });
 
         projectTeam.childNodes.forEach(node => {
             node.addEventListener('click', (event) => {
-                fetch("../../backend/api/projects/remove-user-from-project.php", {
-                    method: 'POST',
-                    body: JSON.stringify({username: node.textContent, "project": projectId}),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                
-                refresh();
+                (async () => {
+                    const res = await fetch("../../backend/api/projects/remove-user-from-project.php", {
+                        method: 'POST',
+                        body: JSON.stringify({username: node.textContent, "project": projectId}),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    refresh();
+                })();
             });
-        })
+        });
     });
 }
 
