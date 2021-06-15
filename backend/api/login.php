@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once("../db/db.php");
 
 $phpInput = json_decode(file_get_contents('php://input'), true);
@@ -7,7 +9,7 @@ $password = $phpInput["password"];
 
 try {
     $db = new DB();
-    $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
+    $sql = "SELECT users.id, users.name, users.lastname, users.username, roles.name, positions.name FROM users JOIN roles ON users.role = roles.id JOIN positions ON users.position = positions.id WHERE users.username = :username AND users.password = :password";
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);
 
@@ -15,13 +17,11 @@ try {
     $user = $statement->fetch();
 
     if (sizeof($user) != 0) {
-        session_start();
-        
-        $_SESSION['username'] = $user['username']);
-        $_SESSION['firstname'] = $user['name']);
-        $_SESSION['lastname'] = $user['lastname']);
-        $_SESSION['role'] = $user['role']);
-        $_SESSION['position'] = $user['position']);
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['firstname'] = $user['name'];
+        $_SESSION['lastname'] = $user['lastname'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['position'] = $user['position'];
         $_SESSION['userId'] = $user['id'];
 
         http_response_code(200);
