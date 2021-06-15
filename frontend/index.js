@@ -67,3 +67,38 @@ btnChangeWorkHours.addEventListener('click', (event) => {
             .then(data => console.log(data));
     }
 });
+
+function refresh() {
+    var projectsElement = document.getElementById("projects");
+    fetch("../backend/api/projects/get-all-projects.php")
+        .then (response => response.json())
+        .then(json => {
+            var projects = "";
+            json.forEach(project => {
+                let lbl = document.createElement("label");
+                lbl.innerText = `${project.name}`;
+                projectsElement.appendChild(lbl);
+                let btnEdit = document.createElement("button");
+                btnEdit.innerText = `Промени проект`;
+                projectsElement.appendChild(btnEdit);
+                let btnEstimate = document.createElement("button");
+                btnEstimate.innerText = `Оцени проект`;
+                projectsElement.appendChild(btnEstimate);
+
+                btnEdit.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    window.location.replace(`projects/project.html?project=${project.id}`)
+                });
+                btnEstimate.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    //TODO add estimatePage
+                    // window.location.replace(`projects/project.html?project=${project.id}`)
+                });
+
+            });
+        })
+}
+
+
+
+refresh();
