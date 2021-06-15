@@ -9,14 +9,14 @@ $password = $phpInput["password"];
 
 try {
     $db = new DB();
-    $sql = "SELECT users.id, users.name, users.lastname, users.username, roles.name, positions.name FROM users JOIN roles ON users.role = roles.id JOIN positions ON users.position = positions.id WHERE users.username = :username AND users.password = :password";
+    $sql = "SELECT users.id, users.name, users.lastname, users.username, roles.name as role, positions.name as position FROM users JOIN roles ON users.role = roles.id JOIN positions ON users.position = positions.id WHERE users.username = :username AND users.password = :password";
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);
 
     $statement->execute(["username" => $username, "password" => $password]);
-    $user = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+    $user = $statement->fetch();
 
-    if (sizeof($user) != 0) {
+    if ($user) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['firstname'] = $user['name'];
         $_SESSION['lastname'] = $user['lastname'];
