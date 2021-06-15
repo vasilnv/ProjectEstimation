@@ -1,0 +1,18 @@
+.float-child {
+    width: 50%;
+    float: left;
+}
+
+li:hover {
+    color: red;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+li {
+    color: black;
+}
+
+body {
+    background-color: #74B3CE;
+}
