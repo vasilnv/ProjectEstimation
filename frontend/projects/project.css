@@ -3,14 +3,16 @@
     float: left;
 }
 
+
+li {
+    color: black;
+    font-size: large;
+}
+
 li:hover {
     color: red;
     cursor: pointer;
     font-weight: 900;
-}
-
-li {
-    color: black;
 }
 
 body {
