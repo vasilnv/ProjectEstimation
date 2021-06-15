@@ -11,11 +11,13 @@ try {
     if (!$_SESSION["role"] || !$_SESSION["userId"]) {
         http_response_code(403);
         echo json_encode(["status" => "UNAUTHORIZED", "message" => "Липсват права!", "statusCode" => 403]);
+        exit();
     }
 
     if($_SESSION["role"] != "Admin" && $_SESSION["role"] != "Manager") {
         http_response_code(403);
         echo json_encode(["status" => "UNAUTHORIZED", "message" => "Липсват права!", "statusCode" => 403]);
+        exit();
     }
 
     $db = new DB();
@@ -28,6 +30,7 @@ try {
     if($_SESSION["role"] == "Manager" && $managerId != $_SESSION["userId"]) {
         http_response_code(403);
         echo json_encode(["status" => "UNAUTHORIZED", "message" => "Липсват права!", "statusCode" => 403]);
+        exit();
     }
 
 
@@ -40,7 +43,9 @@ try {
 
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "message" => "Успешно премахнат служител от проект", "statusCode" => 200]);
+    exit();
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(["status" => "ERROR", "message" => "Internal server error"]);
+    exit();
 }
