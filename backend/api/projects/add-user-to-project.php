@@ -3,7 +3,6 @@ session_start();
 require_once("../../db/db.php");
 
 try {
-
     $phpInput = json_decode(file_get_contents('php://input'), true);
     $username = $phpInput["username"];
     $projectId = $phpInput["project"];

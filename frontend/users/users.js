@@ -14,7 +14,8 @@ fetch("../../backend/api/users/get-users.php")
                 <td>${user.lastname} </td>
                 <td>${user.username} </td>
                 <td>${user.position}</td>         
-            </tr>`;
+            </tr><button>Edit<button>`
+            ;
         });
    
     // Display result
