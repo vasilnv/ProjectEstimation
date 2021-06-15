@@ -1,11 +1,10 @@
 <?php
-session_start();
 require_once("../../db/db.php");
 
 try {
     $projectId = $_GET["project"];
     $db = new DB();
-    $sql = "SELECT t1.name, SUM(isProject) as isInProject FROM (SELECT name, CASE WHEN user_projects.projectId = :projectId THEN 1 ELSE 0 END AS isProject FROM users LEFT JOIN user_projects ON user_projects.userId = users.id) as t1 GROUP BY name";
+    $sql = "SELECT t1.username, SUM(isProject) as isInProject FROM (SELECT username, CASE WHEN user_projects.projectId = :projectId THEN 1 ELSE 0 END AS isProject FROM users LEFT JOIN user_projects ON user_projects.userId = users.id) as t1 GROUP BY username";
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);
 
