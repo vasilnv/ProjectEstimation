@@ -9,7 +9,7 @@ $password = $phpInput["password"];
 
 try {
     $db = new DB();
-    $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
+    $sql = "SELECT users.id, users.name, users.lastname, users.username, roles.name, positions.name FROM users JOIN roles ON users.role = roles.id JOIN positions ON users.position = positions.id WHERE users.username = :username AND users.password = :password";
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);
 
