@@ -5,7 +5,7 @@ require_once("../../db/db.php");
 try {
     $phpInput = json_decode(file_get_contents('php://input'), true);
     $username = $phpInput["username"];
-    $projectId = $phpInput["project"];
+    $projectId = (int) $phpInput["project"];
 
     if (!$_SESSION["role"] || !$_SESSION["userId"]) {
         http_response_code(403);

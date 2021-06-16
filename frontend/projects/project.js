@@ -16,9 +16,9 @@ function refresh() {
         var usersNotInProject = "";
         json.forEach(user => {
             if (user.isInProject == 1) {
-                usersInProject +=  `<li>${user.username}</li>`;
+                usersInProject +=  `<li>${user.name} ${user.lastname}, [${user.username}]</li>`;
             } else {
-                usersNotInProject += `<li>${user.username}</li>`;
+                usersNotInProject += `<li>${user.name} ${user.lastname}, [${user.username}]</li>`;
             }
         });
 
@@ -32,7 +32,7 @@ function refresh() {
                 (async () => {
                     const res = await fetch("../../backend/api/projects/add-user-to-project.php", {
                         method: 'POST',
-                        body: JSON.stringify({username: node.textContent, "project": projectId}),
+                        body: JSON.stringify({username: node.textContent.match("\\[(.+)\\]")[1], "project": projectId}),
                         headers: {
                             'Content-Type': 'application/json'
                         }
@@ -48,7 +48,7 @@ function refresh() {
                 (async () => {
                     const res = await fetch("../../backend/api/projects/remove-user-from-project.php", {
                         method: 'POST',
-                        body: JSON.stringify({username: node.textContent, "project": projectId}),
+                        body: JSON.stringify({username: node.textContent.match("\\[(.+)\\]")[1], "project": projectId}),
                         headers: {
                             'Content-Type': 'application/json'
                         }
