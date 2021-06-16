@@ -48,7 +48,7 @@ const btnSave = document.getElementsByClassName('save-user-btn');
 function show() {
     var rowId = event.target.parentNode.parentNode.id;
     var posIdOption = "0" + rowId;
-    var posId = document.getElementById(posIdOption).selectedIndex;
+    var posId = document.getElementById(posIdOption).selectedIndex + 1;
     var formData = {
         position: posId,
         userId: rowId
@@ -72,8 +72,9 @@ function show() {
                 console.log("Success");
             }
         })
-        .then(data => console.log(data));
-
+        .then(data => console.log(data))
+        //TODO refresh without reload
+        .then(location.reload());
 }
 
                 // window.location.replace("../index.html");
