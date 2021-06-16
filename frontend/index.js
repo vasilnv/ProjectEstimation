@@ -1,3 +1,4 @@
+"use strict";
 const btnExit = document.getElementById('exit-btn');
 btnExit.addEventListener('click', (event) => {
     event.preventDefault();
@@ -73,7 +74,6 @@ function refresh() {
     fetch("../backend/api/projects/get-all-projects.php")
         .then (response => response.json())
         .then(json => {
-            var projects = "";
             json.forEach(project => {
                 let lbl = document.createElement("label");
                 lbl.innerText = `${project.name}`;
@@ -89,10 +89,10 @@ function refresh() {
                     event.preventDefault();
                     window.location.replace(`projects/project.html?project=${project.id}`)
                 });
+
                 btnEstimate.addEventListener('click', (event) => {
                     event.preventDefault();
-                    //TODO add estimatePage
-                    // window.location.replace(`projects/project.html?project=${project.id}`)
+                    window.location.replace(`projects/projectEstimated.html?project=${project.id}`);
                 });
 
             });
