@@ -1,35 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Вход</title>
     <link href="login.css" rel="stylesheet">
+    <link href="../index.css" rel="stylesheet">
     <script defer src="login.js"> </script>
-
 </head>
+
 <body>
-<form id="registration-form">
-    <h1 id="header">Вход</h1>
-    <p class="form-item" id="form1">
-        <input id="username" placeholder="Потребителско име" required="required">
-    </p>
-    <p>
-        <label class='err_hidden' id="error_username">Невалиднo потребителско име</label>
-    </p>
-    <p class="form-item" id="form2">
-        <input id="password" placeholder="Парола" type="password" required="required">
-    </p>
-    <p>
-        <label class='err_hidden' id="error_password">Невалидна парола</label>
-    </p>
-    <p>
-    <p class="form-item" id="form3">
-        <button id="login-btn"> Вход </button>
-    </p>
-    <p class="form-item" id="form4">
-        <label class = "err" id="msg_exists"> Грешни входни данни</label>
-    </p>
-</form>
+    <header>
+        <img src="../assets/logo.png" width="10%" height="10%" alt="logo">
+        <article>
+            <a class="active">Вход</a>
+            <a href="../register/registration.html">Регистрация</a>
+        </article>
+    </header>
+    <form id="registration-form">
+        <h1 id="header">Вход</h1>
+        <p class="form-item" id="form1">
+            <input id="username" placeholder="Потребителско име" required="required">
+        </p>
+        <p>
+            <label class='err_hidden' id="error_username">Невалиднo потребителско име</label>
+        </p>
+        <p class="form-item" id="form2">
+            <input id="password" placeholder="Парола" type="password" required="required">
+        </p>
+        <p>
+            <label class='err_hidden' id="error_password">Невалидна парола</label>
+        </p>
+        <p>
+        <p class="form-item" id="form3">
+            <button id="login-btn"> Вход </button>
+        </p>
+        <p class="form-item" id="form4">
+            <label class="err" id="msg_exists"> Грешни входни данни</label>
+        </p>
+    </form>
 
 </body>
+
 </html>

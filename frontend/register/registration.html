@@ -1,59 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
     <link href="registration.css" rel="stylesheet">
+    <link href="../index.css" rel="stylesheet">
     <script defer src="registration.js"> </script>
 </head>
+
 <body>
-<form id="registration-form">
-    <h1 id="header">Регистрация</h1>
-    <p class="form-item" id="form1">
-        <input id="username" placeholder="Потребителско име" required="required">
-    </p>
-    <p>
-        <label class='err_hidden' id="error_username">Невалиднo потребителско име</label>
-    </p>
-    <p class="form-item" id="form10">
-        <input id="name" placeholder="Име" required="required">
-    </p>
-    <p>
-        <label class='err_hidden' id="error_name">Невалидно име</label>
-    </p>
-    <p class="form-item" id="form11">
-        <input id="family-name" placeholder="Фамилия" required="required">
-    </p>
-    <p>
-        <label class='err_hidden' id="error_family_name">Невалидно фамилно име</label>
-    </p>
-    <p class="form-item" id="form4">
-        <input id="email" placeholder="Имейл адрес" required="required">
-    </p>
-    <p>
-        <label class='err_hidden' id="error_email">Невалиден e-mail адрес</label>
-    </p>
-    <p class="form-item" id="form2">
-        <input id="password" placeholder="Парола" type="password" required="required">
-    </p>
-    <p>
-        <label class='err_hidden' id="error_password">Невалидна парола</label>
-    </p>
-    <p>
-        <label class="form-item" id="position">Позиция</label>
-        <select class="form-item" for="position" id="select-position">
-            <option>Manager</option>
-            <option>Junior</option>
-            <option>Mid</option>
-            <option>Senior</option>
-        </select>
-    </p>
-    <p class="form-item" id="form7">
-        <button id="register-btn"> Регистрирай ме!</button>
-    </p>
-    <p class="form-item" id="form8">
-        <label class = "err" id="msg_exists"> Потребителят съществува, моля изберете друго потребителско име</label>
-    </p>
-</form>
+    <header>
+        <img src="../assets/logo.png" width="10%" height="10%" alt="logo">
+        <article>
+            <a href="../login/login.html">Вход</a>
+            <a class="active">Регистрация</a>
+        </article>
+    </header>
+
+    <form id="registration-form">
+        <h1 id="header">Регистрация</h1>
+        <p class="form-item" id="form1">
+            <input id="username" placeholder="Потребителско име" required="required">
+        </p>
+        <p>
+            <label class='err_hidden' id="error_username">Невалиднo потребителско име</label>
+        </p>
+        <p class="form-item" id="form10">
+            <input id="name" placeholder="Име" required="required">
+        </p>
+        <p>
+            <label class='err_hidden' id="error_name">Невалидно име</label>
+        </p>
+        <p class="form-item" id="form11">
+            <input id="family-name" placeholder="Фамилия" required="required">
+        </p>
+        <p>
+            <label class='err_hidden' id="error_family_name">Невалидно фамилно име</label>
+        </p>
+        <p class="form-item" id="form4">
+            <input id="email" placeholder="Имейл адрес" required="required">
+        </p>
+        <p>
+            <label class='err_hidden' id="error_email">Невалиден e-mail адрес</label>
+        </p>
+        <p class="form-item" id="form2">
+            <input id="password" placeholder="Парола" type="password" required="required">
+        </p>
+        <p>
+            <label class='err_hidden' id="error_password">Невалидна парола</label>
+        </p>
+        <p>
+            <label class="form-item" id="position">Позиция</label>
+            <select class="form-item" for="position" id="select-position">
+                <option>Manager</option>
+                <option>Junior</option>
+                <option>Mid</option>
+                <option>Senior</option>
+            </select>
+        </p>
+        <p class="form-item" id="form7">
+            <button id="register-btn"> Регистрирай ме!</button>
+        </p>
+        <p class="form-item" id="form8">
+            <label class="err" id="msg_exists"> Потребителят съществува, моля изберете друго потребителско име</label>
+        </p>
+    </form>
 </body>
+
 </html>
