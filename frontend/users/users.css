@@ -3,6 +3,7 @@ table {
     font-size: large;
     border: 1px solid black;
     border-radius: 6px;
+    background-color: white;
 }
 
 body {
