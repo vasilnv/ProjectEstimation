@@ -1,5 +1,4 @@
 "use strict";
-
 const btnProject = document.getElementById('create-project-btn');
 btnProject.addEventListener('click', (event) => {
     event.preventDefault();

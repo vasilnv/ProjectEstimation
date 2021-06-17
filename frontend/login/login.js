@@ -1,9 +1,14 @@
+
+fetch("../backend/api/logout.php")
+    .then(response => response.json)
+    .then(data => console.log(data));
+
 const btn = document.getElementById('login-btn');
 btn.addEventListener('click', (event) => {
     document.getElementById("msg_exists").style.display = 'none';
 
     var isValid = true;
-    if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,10}$'))){
+    if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,10}$'))) {
         document.getElementById('error_password').style.display = 'block'
         document.getElementById('password').style.borderColor = '#B0706D'
         document.getElementById('error_password').classList.remove("err_hidden");
@@ -14,7 +19,7 @@ btn.addEventListener('click', (event) => {
         document.getElementById('password').style.borderColor = '#C3CDC0'
         document.getElementById('error_password').classList.remove('error')
     }
-    if (document.getElementById("username").value.length < 3 || document.getElementById("username").value.length > 10){
+    if (document.getElementById("username").value.length < 3 || document.getElementById("username").value.length > 10) {
         document.getElementById('error_username').style.display = 'block'
         document.getElementById('username').style.borderColor = '#B0706D'
         document.getElementById('error_username').classList.remove("err_hidden");
@@ -41,15 +46,15 @@ btn.addEventListener('click', (event) => {
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         })
-            .then(response=>response.json())
-            .then(response=> {
-                if(response.status === 'ERROR') {
-                    document.getElementById("msg_exists").style.display='block';
+            .then(response => response.json())
+            .then(response => {
+                if (response.status === 'ERROR') {
+                    document.getElementById("msg_exists").style.display = 'block';
                 } else {
                     window.location.replace("../index.html");
                 }
             })
-            .then(data=>console.log(data));
+            .then(data => console.log(data));
     }
     event.preventDefault();
 
