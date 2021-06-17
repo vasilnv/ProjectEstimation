@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Начало</title>
     <link href="index.css" rel="stylesheet">
+    <link href="common.css" rel="stylesheet">
     <script defer src="index.js"> </script>
 </head>
 
@@ -12,42 +13,27 @@
     <header>
         <img src="assets/logo.png" width="10%" height="10%" alt="logo">
         <article>
-          <a class="active">Начална страница</a>
-          <a href="tasks/task.html">Създаване на задача</a>
-          <a href="users/users.html">Потребители</a>
-          <a href="login/login.html">Изход</a>
+            <a class="active">Начална страница</a>
+            <a href="tasks/task.html">Създаване на задача</a>
+            <a href="users/users.html">Потребители</a>
+            <a href="login/login.html">Изход</a>
         </article>
     </header>
-    <form id="registration-form">
-        <h1 id="header">Estimate your project</h1>
-        <p id="intro">
-        <h2>Добре дошли!</h2>
-        <h3> Estimate your project е иновативна платформа, която може да използвате, за да оцените сложността на проекта
-            си. </h3>
-        <!--    TODO Add more info how a project is estimated, how you can estimate a project and so on-->
-        </p>
-        <p class="form-item" id="form1">
-            <button id="exit-btn">Изход</button>
-        </p>
-        <p class="form-item" id="form2">
-            <button id="create-task-btn">Създай задача</button>
-        </p>
-        <p class="form-item" id="form3">
-            <button id="change-role-btn">Промени роля</button>
-        </p>
-        <p class="form-item" id="form4">
-            <input id="project-name" type="text" placeholder="Име на проект">
-            <label class='err_hidden' id="error_project_name">Невалиднo име на проект</label>
-            <button id="create-project-btn">Създай проект</button>
-        </p>
-        <p class="form-item" id="form5">
-            <input id="workHours" type="text" placeholder="Промени работни часове">
-            <button id="change-work-hours-btn">Промени работни часове на седмица</button>
-        </p>
+    <h1 id="header">Estimate project</h1>
+    <h3> Estimate project е иновативна платформа, която може да използвате, за да оцените сложността на проекта
+        си. Оценката е на базата на различни фактори, включитено колко задачи и колко хора работят в даден проект.</h3>
 
-        <p id="projects"> </p>
+    <!--    TODO Add more info how a project is estimated, how you can estimate a project and so on-->
+    <p class="form-item" id="form4">
+        <input id="project-name" type="text" placeholder="Име на проект">
+        <label class='err_hidden' id="error_project_name">Невалиднo име на проект</label>
+        <button id="create-project-btn">Създай проект</button>
+    </p>
+    <p class="form-item" id="form5">
+        <input id="workHours" type="text" placeholder="Промени работни часове">
+        <button id="change-work-hours-btn">Промени работни часове на седмица</button>
+    </p>
 
-    </form>
+    <p id="projects"> </p>
 </body>
-
 </html>

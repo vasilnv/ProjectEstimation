@@ -15,10 +15,6 @@ form {
     padding-left: 31px;
 }
 
-h1 {
-    padding-left: 40%;
-}
-
 #form1 {
     padding-top: 31px;
 }
@@ -54,17 +50,18 @@ select {
 }
 
 button {
-    color: #31408b;
-    background-color: #cfd2e7;
+    color: #172A3A;
+    font-size: 15px;
+    background-color: #508991;
 }
 
 .form-item button:hover {
-    background-color: #19216a;
+    background-color: #09BC8A;
     color: white;
 }
 
 .form-item input:hover, select:hover {
-    border-color: #31408b;
+    border-color: #09BC8A;
 }
 
 #msg_exists {

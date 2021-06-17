@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Създай задача</title>
-<!--  <link href="./projectEstimated.css" rel="stylesheet">-->
+  <link href="./projectEstimated.css" rel="stylesheet">
+  <link href="../common.css" rel="stylesheet">
   <script defer src="projectEstimated.js"> </script>
 </head>
+
 <body>
-<h1 id="project-name"></h1>
-<div>
-  <div class="estimation">
-    <label>Мениджър</label>
-    <label id="managerName"> </label>
+  <header>
+    <img src="../assets/logo.png" width="10%" height="10%" alt="logo">
+    <article>
+      <a href="../index.html">Начална страница</a>
+      <a class="active">Оцени проект</a>
+      <a href="../tasks/task.html">Създаване на задача</a>
+      <a href="../users/users.html">Потребители</a>
+      <a href="../login/login.html">Изход</a>
+    </article>
+  </header>
+  <h1 id="project-name"></h1>
+  <div>
+    <div class="estimation">
+      <label>Мениджър</label>
+      <label id="managerName"> </label>
+    </div>
+    <div class="estimation">
+      <label>Брой задачи по проекта</label>
+      <label id="tasksNumber"> </label>
+    </div>
+    <div class="estimation">
+      <label>Оценено време на задачите</label>
+      <label id="estimationTime"> </label>
+    </div>
+    <div class="estimation">
+      <label>Брой разработчици</label>
+      <label id="devsNumber"> </label>
+    </div>
+    <div class="estimation">
+      <label>Коефициент</label>
+      <label id="coefficient"> </label>
+    </div>
   </div>
-  <div class="estimation">
-    <label>Брой задачи по проекта</label>
-    <label id="tasksNumber"> </label>
-  </div>
-  <div class="estimation">
-    <label>Оценено време на задачите</label>
-    <label id="estimationTime"> </label>
-  </div>
-  <div class="estimation">
-    <label>Брой разработчици</label>
-    <label id="devsNumber"> </label>
-  </div>
-  <div class="estimation">
-    <label>Коефициент</label>
-    <label id="coefficient"> </label>
-  </div>
-</div>
 </body>
+
 </html>

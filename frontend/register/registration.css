@@ -1,6 +1,7 @@
 form {
     margin: auto;
     margin-top: 62px;
+    margin-bottom: 62px;
     width: 427px;
     border: 2px solid;
     border-color: #000000;
@@ -13,10 +14,6 @@ form {
 
 .form-item {
     padding-left: 31px;
-}
-
-h1 {
-    padding-left: 25%;
 }
 
 #form1 {
@@ -54,17 +51,19 @@ select {
 }
 
 button {
-    color: #31408b;
-    background-color: #cfd2e7;
+    color: #172A3A;
+    font-size: 15px;
+    background-color: #508991;
 }
 
+
 .form-item button:hover {
-    background-color: #19216a;
+    background-color: #09BC8A;
     color: white;
 }
 
 .form-item input:hover, select:hover {
-    border-color: #31408b;
+    border-color: #09BC8A;
 }
 
 #error_email {

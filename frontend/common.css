@@ -1,0 +1,53 @@
+header {
+    overflow: hidden;
+    background-color: #508991;
+    padding: 20px 10px;
+}
+
+header a {
+    float: left;
+    color: #172A3A;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 20px; 
+    line-height: 25px;
+    border-radius: 4px;
+    margin: 20px;
+}
+
+header a:hover {
+    background-color: #ddd;
+    color: #172A3A;
+}
+
+header a.active {
+    background-color: #172A3A;
+    color: white;
+}
+
+article {
+    float: right;
+}
+
+img {
+    border: 5px solid #172A3A;
+}
+
+body {
+    background-color: rgb(116, 179 , 206, 0.3);
+    margin: 0;
+}
+
+form {
+    background-color: white;
+    border-radius: 8px;
+    border-width: 3px;
+}
+
+h1 {
+    text-align: center;
+    color: #004346;
+    font-size: 40px;    
+}
+
