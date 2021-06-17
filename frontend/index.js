@@ -2,7 +2,10 @@
 const btnExit = document.getElementById('exit-btn');
 btnExit.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.replace("./login/login.html");
+    fetch("../backend/api/logout.php")
+        .then(response=>response.json)
+        .then(data=>console.log(data));
+    window.location.replace("login/login.html");
 });
 
 const btnProject = document.getElementById('create-project-btn');
@@ -42,13 +45,13 @@ btnProject.addEventListener('click', (event) => {
 const btnTask = document.getElementById('create-task-btn');
 btnTask.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.replace("./tasks/task.html")
+    window.location.replace("tasks/task.html")
 });
 
 const btnChangeRole = document.getElementById('change-role-btn');
 btnChangeRole.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.replace("./users/users.html")
+    window.location.replace("users/users.html")
 });
 
 const btnChangeWorkHours = document.getElementById('change-work-hours-btn');
