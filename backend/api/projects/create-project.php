@@ -8,14 +8,26 @@ $projectName = $phpInput["projectName"];
 
 try {
     $db = new DB();
-    $sql = "INSERT INTO projects (name, manager) VALUES (:projectName, :manager)";
+    $sql = "SELECT * FROM projects WHERE name=:projectName";
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);
 
-    $statement->execute(["projectName" => $projectName, "manager" => $_SESSION['userId']]);
+    $statement->execute(["projectName" => $projectName]);
+    $projectExist = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    http_response_code(201);
-    echo json_encode(["status" => "SUCCESS", "message" => "Проект създаден успешно"]);
+    if (sizeof($projectExist) != 0) {
+        http_response_code(409);
+        echo json_encode(["status" => "ERROR", "message" => "Проект с такова име съществува", "statusCode" => 409]);
+    } else {
+        $sql = "INSERT INTO projects (name, manager) VALUES (:projectName, :manager)";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+
+        $statement->execute(["projectName" => $projectName, "manager" => $_SESSION['userId']]);
+
+        http_response_code(201);
+        echo json_encode(["status" => "SUCCESS", "message" => "Проект създаден успешно"]);
+    }
 
 } catch (PDOException $e) {
     http_response_code(500);
