@@ -21,6 +21,11 @@ try {
         sendUnauthorizedError();
     }
 
+    if($newCapacity < 0) {
+        http_response_code(422);
+        echo json_encode(["status" => "UNPROCESSABLE DATA", "message" => "Работните часове трябва да са >= 0", "statusCode" => 422]);
+        exit();
+    }
     require_once ("../../db/db.php");
     $db = new DB();
     $sql = "UPDATE users SET capacity=:capacity WHERE id=:userId";
