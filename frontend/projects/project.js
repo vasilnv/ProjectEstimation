@@ -6,27 +6,20 @@ function refresh() {
         .then(json => {
             var tasksElement = document.getElementById("project-tasks");
             json.forEach(task => {
-                let pName = document.createElement("p");
-                let lbl = document.createElement("label");
-                lbl.innerText = `Име на задачата: ${task.name}`;
-                pName.appendChild(lbl);
-                tasksElement.appendChild(lbl);
-                let pDescription = document.createElement("p");
-                let lblDescription = document.createElement("label");
-                lblDescription.innerText = `Описание на задачата: ${task.description}`;
-                pDescription.appendChild(lblDescription);
-                let pEstimation = document.createElement("p");
-                let lblEstimation = document.createElement("label");
-                lblEstimation.innerText = `Оценка във време на задачата: ${task.estimation} дни`;
-                pEstimation.appendChild(lblEstimation);
-                tasksElement.appendChild(pName);
-                tasksElement.appendChild(pDescription);
-                tasksElement.appendChild(pEstimation);
-                let pButton = document.createElement("p");
+                let li = document.createElement("li");
+                let estimationElement = document.createElement("h2");
+                estimationElement.innerHTML=`${task.estimation} дни`;
+                let nameElement = document.createElement("h3");
+                nameElement.innerHTML=`Име на задачата: ${task.name}`;
+                let descriptionElement = document.createElement("p");
+                descriptionElement.innerHTML=`Описание: ${task.description}`;
+                li.appendChild(estimationElement);
+                li.appendChild(nameElement);
+                li.appendChild(descriptionElement);
                 let btnDelete = document.createElement("button");
                 btnDelete.innerText = `Изтрий задача`;
-                pButton.appendChild(btnDelete);
-                tasksElement.appendChild(pButton);
+                li.appendChild(btnDelete);
+                tasksElement.appendChild(li);
 
                 btnDelete.addEventListener('click', (event) => {
                         fetch("../../backend/api/tasks/delete-task.php?task=" + `${task.id}`)
