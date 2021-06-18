@@ -1,6 +1,7 @@
 "use strict";
 const btnProject = document.getElementById('create-project-btn');
 btnProject.addEventListener('click', (event) => {
+    document.getElementById('error_project_name').style.display = 'none'
     event.preventDefault();
     var isValid = true;
     if (!document.getElementById("project-name").value.match(new RegExp("^[a-zA-Z0-9]{6,50}$"))) {
