@@ -34,57 +34,52 @@ function NodeFactory(mmXml) {
 }
 
 getProjects()
-.then(projects => {
-    console.log(projects);
+    .then(projects => {
+        var mmXml = document.implementation.createDocument("", "");
+        var nodeFactory = NodeFactory(mmXml);
 
-    var mmXml = document.implementation.createDocument("", "");
-    var nodeFactory = NodeFactory(mmXml);
+        var mapNode = mmXml.createElement("map");
+        mapNode.setAttribute("version", "1.0.1");
 
-    var mapNode = mmXml.createElement("map");
-    mapNode.setAttribute("version", "1.0.1");
+        var projectsNode = nodeFactory.create("Projects");
 
-    var projectsNode = nodeFactory.create("Projects");
+        Object.entries(projects).forEach(project => {
+            const [projectName, projectInfo] = project;
+            var projectNode = nodeFactory.create(projectName);
 
-    Object.entries(projects).forEach(project => {
-        const [projectName, projectInfo] = project;
-        var projectNode = nodeFactory.create(projectName);
+            var teamNode = nodeFactory.create("Team");
+            projectInfo.users.forEach(user => {
+                var userNode = nodeFactory.create(user);
+                teamNode.appendChild(userNode);
+            });
+            projectNode.appendChild(teamNode);
 
-        var teamNode = nodeFactory.create("Team");
-        projectInfo.users.forEach(user => {
-            var userNode = nodeFactory.create(user);
-            teamNode.appendChild(userNode);
+            var tasksNode = nodeFactory.create("Tasks");
+            projectInfo.tasks.forEach(task => {
+                var taskNode = nodeFactory.create(task);
+                tasksNode.appendChild(taskNode);
+            });
+            projectNode.appendChild(tasksNode);
+
+            projectsNode.appendChild(projectNode);
         });
-        projectNode.appendChild(teamNode);
 
-        var tasksNode = nodeFactory.create("Tasks");
-        projectInfo.tasks.forEach(task => {
-            var taskNode = nodeFactory.create(task);
-            tasksNode.appendChild(taskNode);
-        });
-        projectNode.appendChild(tasksNode);
 
-        
-        projectsNode.appendChild(projectNode);
+        mapNode.appendChild(projectsNode);
+        mmXml.appendChild(mapNode);
+
+        download("export.mm", new XMLSerializer().serializeToString(mmXml));
     });
-
-
-    mapNode.appendChild(projectsNode);
-    mmXml.appendChild(mapNode);
-
-    download("export.mm", new XMLSerializer().serializeToString(mmXml));
-
-    console.log(new XMLSerializer().serializeToString(mmXml));
-});
 
 function download(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
-  
+
     element.style.display = 'none';
     document.body.appendChild(element);
-  
+
     element.click();
-  
+
     document.body.removeChild(element);
-  }
+}
