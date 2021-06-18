@@ -15,8 +15,13 @@ function refresh() {
                 let lblDescription = document.createElement("label");
                 lblDescription.innerText = `Описание на задачата: ${task.description}`;
                 pDescription.appendChild(lblDescription);
+                let pEstimation = document.createElement("p");
+                let lblEstimation = document.createElement("label");
+                lblEstimation.innerText = `Оценка във време на задачата: ${task.estimation} дни`;
+                pEstimation.appendChild(lblEstimation);
                 tasksElement.appendChild(pName);
                 tasksElement.appendChild(pDescription);
+                tasksElement.appendChild(pEstimation);
                 let pButton = document.createElement("p");
                 let btnDelete = document.createElement("button");
                 btnDelete.innerText = `Изтрий задача`;
