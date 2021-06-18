@@ -4,16 +4,13 @@ btnProject.addEventListener('click', (event) => {
     document.getElementById('error_project_name').style.display = 'none'
     event.preventDefault();
     var isValid = true;
-    if (!document.getElementById("project-name").value.match(new RegExp("^[a-zA-Z0-9]{6,50}$"))){
-        document.getElementById('error_project_name').style.display = 'block'
+    if (!document.getElementById("project-name").value.match(new RegExp("^[a-zA-Z0-9]{6,50}$"))) {
         document.getElementById('project-name').style.borderColor = '#B0706D'
-        document.getElementById('error_project_name').classList.remove("err_hidden");
-        document.getElementById('error_project_name').classList.add("error");
         isValid = false;
+        notify("Невалидно име на проект! Моля въведете отново.");
+
     } else {
-        document.getElementById('error_project_name').style.display = 'none'
         document.getElementById('project-name').style.borderColor = '#C3CDC0'
-        document.getElementById('error_project_name').classList.remove('error')
     }
 
     const formData = {
@@ -29,15 +26,16 @@ btnProject.addEventListener('click', (event) => {
                 'Content-Type': 'application/json'
             }
         })
-            .then(response=>response.json())
-            .then(data=>console.log(data));
+            .then(response => response.json())
+            .then(data=>alert(data.message))
+
     }
 });
 
 const btnChangeWorkHours = document.getElementById('change-work-hours-btn');
 btnChangeWorkHours.addEventListener('click', (event) => {
     event.preventDefault();
-    var isValid=true;
+    var isValid = true;
     const formData = {
         newCapacity: document.getElementById("workHours").value
     };
@@ -48,22 +46,22 @@ btnChangeWorkHours.addEventListener('click', (event) => {
             body: JSON.stringify(formData),
         })
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data=>alert(data.message));
     }
 });
 
 function refresh() {
     var projectsElement = document.getElementById("projects");
     fetch("../backend/api/projects/get-all-projects.php")
-        .then (response => response.json())
+        .then(response => response.json())
         .then(json => {
             json.forEach(project => {
                 let li = document.createElement("li");
-                
+
                 let h3 = document.createElement("h3");
                 h3.innerText = `${project.name}`
                 li.appendChild(h3);
-                
+
                 let btnEdit = document.createElement("button");
                 btnEdit.innerText = `Промени проект`;
                 li.appendChild(btnEdit);
@@ -75,6 +73,7 @@ function refresh() {
 
                 btnEdit.addEventListener('click', (event) => {
                     event.preventDefault();
+
                     window.location.replace(`projects/project.html?project=${project.id}`)
                 });
 
@@ -82,11 +81,8 @@ function refresh() {
                     event.preventDefault();
                     window.location.replace(`projects/projectEstimated.html?project=${project.id}`);
                 });
-
             });
         })
 }
-
-
 
 refresh();

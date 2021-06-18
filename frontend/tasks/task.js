@@ -50,13 +50,14 @@ btnCreate.addEventListener('click', (event) => {
             .then(response=> {
                 if(response.statusCode === 400) {
                     document.getElementById("error_project").style.display='block';
+                    alert(response.message);
                 } else if(response.statusCode === 500) {
                     document.getElementById("error_server").style.display = 'block';
+                    alert(response.message);
                 } else if (response.statusCode === 200) {
                     window.location.replace("../index.html");
                 }
             })
-            .then(data=>console.log(data));
     }
 
 });

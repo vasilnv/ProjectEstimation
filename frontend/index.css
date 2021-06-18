@@ -74,6 +74,7 @@ body {
 	cursor: pointer;
 	overflow: hidden;
     float: right;
+	margin-top: 10px;
 }
 
 .tilesWrap li button:before {
@@ -128,14 +129,14 @@ body {
 
 .tilesWrap li:nth-child(even):before {
 	background: #74B3CE;
-background: -webkit-linear-gradient(to right, #09BC8A, #74B3CE);
-background: linear-gradient(to right, #09BC8A, #74B3CE);
+	background: -webkit-linear-gradient(to right, #09BC8A, #74B3CE);
+	background: linear-gradient(to right, #09BC8A, #74B3CE);
 }
 
 .tilesWrap li:nth-child(odd):before {
 	background: #004346;
-background: -webkit-linear-gradient(to right, #508991, #004346);
-background: linear-gradient(to right, #508991, #004346);
+	background: -webkit-linear-gradient(to right, #508991, #004346);
+	background: linear-gradient(to right, #508991, #004346);
 }
 
 h2 {
@@ -198,10 +199,6 @@ h2 {
 	border: 0;
 	outline: 0;
 	padding: 22px 18px;
-}
-
-.err_hidden {
-    display: none;
 }
 
 .container-item {

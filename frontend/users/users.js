@@ -59,23 +59,12 @@ function show() {
         body: JSON.stringify(formData),
         headers: {
             'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded',
         }
     })
         .then(response => response.json())
         .then(response => {
-            if (response.statusCode === 400) {
-                alert("Wrong data");
-            } else if (response.statusCode === 500) {
-                alert("Error");
-            } else if (response.statusCode === 200) {
-                console.log("Success");
-            }
+            alert(response.message);
         })
-        .then(data => console.log(data))
         //TODO refresh without reload
         .then(location.reload());
 }
-
-                // window.location.replace("../index.html");
-
