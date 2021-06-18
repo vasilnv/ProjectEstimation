@@ -177,7 +177,8 @@ h2 {
 }
 
 .btn--primary:hover {
-    background: darken(#004346, 10%);
+    background-color: #09BC8A;
+	cursor: pointer;
 }
 
 .btn--primary:active {
@@ -210,4 +211,24 @@ h4 {
     color: #004346;
     font-size: 30px;    
     padding-left: 25px;
+}
+
+#export-to-mm-btn {
+	margin-left: 30px;
+	background: #004346;
+	color: white;
+	box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+	border-radius: 2px;
+    padding: 12px 36px;
+	font-size: 1.1em;
+	transition: all 200ms ease-in;
+}
+
+#export-to-mm-btn:hover {
+	background-color: #09BC8A;
+	cursor: pointer;
+}
+
+#export-to-mm-btn:active {
+	background-color: #004346;
 }
