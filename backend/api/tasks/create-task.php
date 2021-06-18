@@ -14,9 +14,9 @@ try {
 
     $statement->execute(["projectname"=>$projectName]);
     $project = $statement->fetchAll(PDO::FETCH_ASSOC);
-    $projectId = $project[0]['id'];
 
     if (sizeof($project) != 0) {
+        $projectId = $project[0]['id'];
         $sql = "INSERT INTO tasks (project, name, description, estimation) VALUES (:project, :name, :description, :estimation);";
         $db = new DB();
         $connection = $db->getConnection();
