@@ -50,6 +50,7 @@ btnCreate.addEventListener('click', (event) => {
             .then(response=> {
                 if(response.statusCode === 400) {
                     document.getElementById("error_project").style.display='block';
+                    // notify(response);
                 } else if(response.statusCode === 500) {
                     document.getElementById("error_server").style.display = 'block';
                 } else if (response.statusCode === 200) {

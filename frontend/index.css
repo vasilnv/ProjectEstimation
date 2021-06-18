@@ -74,6 +74,7 @@ body {
 	cursor: pointer;
 	overflow: hidden;
     float: right;
+	margin-top: 10px;
 }
 
 .tilesWrap li button:before {

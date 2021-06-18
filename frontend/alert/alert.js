@@ -1,7 +1,8 @@
-function notify(code, message){
+function notify(message){
+  console.log(message);
   if(message.message){
     alert(message.message);    
   } else {
-    message
+    alert(message);
   }
 }

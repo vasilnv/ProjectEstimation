@@ -26,7 +26,7 @@ btnProject.addEventListener('click', (event) => {
             }
         })
             .then(response => response.json())
-            .then(data=>alert(data))
+            .then(data=>alert(data.message))
 
     }
 });
@@ -45,7 +45,7 @@ btnChangeWorkHours.addEventListener('click', (event) => {
             body: JSON.stringify(formData),
         })
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data=>alert(data.message));
     }
 });
 
@@ -83,7 +83,5 @@ function refresh() {
             });
         })
 }
-
-
 
 refresh();
