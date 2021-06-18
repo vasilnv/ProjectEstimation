@@ -23,16 +23,28 @@
     <h3> Estimate project е иновативна платформа, която може да използвате, за да оцените сложността на проекта
         си. Оценката е на базата на различни фактори, включитено колко задачи и колко хора работят в даден проект.</h3>
 
-    <!--    TODO Add more info how a project is estimated, how you can estimate a project and so on-->
-    <p class="form-item" id="form4">
-        <input id="project-name" type="text" placeholder="Име на проект">
-        <label class='err_hidden' id="error_project_name">Невалиднo име на проект</label>
-        <button id="create-project-btn">Създай проект</button>
-    </p>
-    <p class="form-item" id="form5">
-        <input id="workHours" type="text" placeholder="Промени работни часове">
-        <button id="change-work-hours-btn">Промени работни часове на седмица</button>
-    </p>
-    <p id="projects"> </p>
+    <div class="container">
+        <h4>Създай нов проект</h4>
+        <div class="container__item">
+            <div id='form4' class="form">
+                <input id="project-name" type="text" class="form__field" placeholder="Име на проекта" />
+                <label class='err_hidden' id="error_project_name">Невалиднo име на проект</label>
+                <button id="create-project-btn" type="button"
+                    class="btn btn--primary btn--inside uppercase">Запази</button>
+            </div>
+        </div>
+        <h4>Промени работните си часове на седмица</h4>
+        <div class="container__item">
+            <div id="form5" class="form">
+                <input id="workHours" type="text" class="form__field" placeholder="Работни часове на седмица" />
+                <button id="change-work-hours-btn" type="button"
+                    class="btn btn--primary btn--inside uppercase">Запази</button>
+            </div>
+        </div>
+    </div>
+
+    <h2>Проекти</h2>
+    <ul id="projects" class="tilesWrap"></ul>
 </body>
+
 </html>

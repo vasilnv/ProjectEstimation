@@ -58,15 +58,20 @@ function refresh() {
         .then (response => response.json())
         .then(json => {
             json.forEach(project => {
-                let lbl = document.createElement("label");
-                lbl.innerText = `${project.name}`;
-                projectsElement.appendChild(lbl);
+                let li = document.createElement("li");
+                
+                let h3 = document.createElement("h3");
+                h3.innerText = `${project.name}`
+                li.appendChild(h3);
+                
                 let btnEdit = document.createElement("button");
                 btnEdit.innerText = `Промени проект`;
-                projectsElement.appendChild(btnEdit);
+                li.appendChild(btnEdit);
                 let btnEstimate = document.createElement("button");
                 btnEstimate.innerText = `Оцени проект`;
-                projectsElement.appendChild(btnEstimate);
+                li.appendChild(btnEstimate);
+
+                projectsElement.appendChild(li);
 
                 btnEdit.addEventListener('click', (event) => {
                     event.preventDefault();
