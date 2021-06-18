@@ -73,6 +73,7 @@ button {
 #error_task_name {
     background-color: #B0706D;
     color: white;
+    text-align: center;
     margin-left: 31px;
     margin-top: 12px;
     font-size: large;
@@ -84,6 +85,7 @@ button {
 #error_server {
     background-color: #B0706D;
     color: white;
+    text-align: center;
     margin-left: 31px;
     margin-top: 12px;
     font-size: large;
@@ -95,6 +97,8 @@ button {
 #error_estimation {
     background-color: #B0706D;
     color: white;
+    text-align: center;
+    margin-left: 31px;
     margin-top: 12px;
     font-size: large;
     height: 38px;

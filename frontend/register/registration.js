@@ -82,11 +82,11 @@ btn.addEventListener('click', (event) => {
         })
             .then(response=>response.json())
             .then(response=> {
-                console.log(response.status);
                 if(response.status === 'SUCCESS') {
                     window.location.replace("../login/login.html");
                 } else {
                     document.getElementById("msg_exists").style.display='block';
+                    alert(response.message)
                 }
             })
             .then(data=>console.log(data));
