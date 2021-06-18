@@ -6,7 +6,7 @@ btnProject.addEventListener('click', (event) => {
     if (!document.getElementById("project-name").value.match(new RegExp("^[a-zA-Z0-9]{6,50}$"))) {
         document.getElementById('project-name').style.borderColor = '#B0706D'
         isValid = false;
-        notify("Невалидно име на проект! Моля въведете отново.");
+        alert("Невалидно име на проект! Моля въведете отново.");
 
     } else {
         document.getElementById('project-name').style.borderColor = '#C3CDC0'
