@@ -6,7 +6,21 @@ require_once ("../../classes/Project.php");
 $phpInput = json_decode(file_get_contents('php://input'), true);
 $projectName = $phpInput["projectName"];
 
+function sendUnauthorizedError() {
+    http_response_code(403);
+    echo json_encode(["status" => "UNAUTHORIZED", "message" => "Липсват права!", "statusCode" => 403]);
+    exit();
+}
+
 try {
+    if (!isset($_SESSION['role'])) {
+        sendUnauthorizedError();
+    }
+
+    if($_SESSION["role"] != "Admin" && $_SESSION["role"] != "Manager") {
+        sendUnauthorizedError();
+    }
+
     $project = new Project($projectName, null);
     $db = new DB();
     $isProjectCreated = $project->checkIfProjectExists();

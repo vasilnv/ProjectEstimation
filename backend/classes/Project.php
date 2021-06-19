@@ -37,8 +37,5 @@ class Project
 
         $statement->execute(["projectName" => $this->name, "manager" => $_SESSION['userId']]);
 
-        http_response_code(201);
-        echo json_encode(["status" => "SUCCESS", "message" => "Проект създаден успешно"]);
-
     }
 }
