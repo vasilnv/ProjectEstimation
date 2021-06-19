@@ -32,8 +32,6 @@ try {
         sendUnauthorizedError();
     }
 
-
-
     $sql = "INSERT INTO user_projects (userId, projectId) SELECT id, :projectId FROM users WHERE username = :username";
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);

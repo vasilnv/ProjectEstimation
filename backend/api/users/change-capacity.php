@@ -27,12 +27,9 @@ try {
         exit();
     }
     require_once ("../../db/db.php");
-    $db = new DB();
-    $sql = "UPDATE users SET capacity=:capacity WHERE id=:userId";
-    $connection = $db->getConnection();
-    $statement = $connection->prepare($sql);
-
-    $statement->execute(["capacity" => $newCapacity, "userId" => $userId]);
+    require_once ("../../classes/User.php");
+    $user = new User($_SESSION['userId'], null, null, null, null, null, null, null, null);
+    $user->changeCapacity($newCapacity);
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "message" => "Успешна промяна на работните часове"]);
 } catch (PDOException $e) {

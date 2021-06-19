@@ -1,5 +1,6 @@
 <?php
 require_once("../../db/db.php");
+require_once("../../classes/User.php");
 
 try {
     $db = new DB();

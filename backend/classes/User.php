@@ -1,6 +1,5 @@
 <?php
 
-
 class User
 {
     public $id;
@@ -13,7 +12,8 @@ class User
     public $capacity;
     public $position;
 
-    function __construct($name, $lastName, $username, $email, $password, $role, $capacity, $position) {
+    function __construct($id, $name, $lastName, $username, $email, $password, $role, $capacity, $position) {
+        $this->id = $id;
         $this->name = $name;
         $this->lastName = $lastName;
         $this->username = $username;
@@ -25,7 +25,6 @@ class User
     }
 
     public function registerUser() {
-        require_once("../db/db.php");
         $db = new DB();
         $sql = "SELECT * FROM users WHERE username = :username";
         $connection = $db->getConnection();
@@ -44,7 +43,6 @@ class User
             http_response_code(400);
             echo json_encode(["status" => "ERROR", "message" => "Грешни подадени данни"]);
         }
-
     }
 
     public function checkPassword() {
@@ -72,6 +70,34 @@ class User
         $statement->execute(["username" => $this->username, "password" => $this->password]);
         return $statement->fetch();
     }
+
+    public function changeCapacity($newCapacity) {
+        $db = new DB();
+        $sql = "UPDATE users SET capacity=:capacity WHERE id=:userId";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+
+        $statement->execute(["capacity" => $newCapacity, "userId" => $this->id]);
+    }
+
+    public function changeRole($newPosition) {
+        $db = new DB();
+        $sql = "UPDATE users set position=:position where id=:userId";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+
+        $statement->execute(["position" => $newPosition, "userId" => $this->id]);
+    }
+
+//    public static function getUsers() {
+//        $db = new DB();
+//        $sql = "SELECT users.id, users.name, lastname, username, email, positions.name as position FROM users inner join positions on positions.id = users.position;";
+//        $connection = $db->getConnection();
+//        $statement = $connection->prepare($sql);
+//
+//        $statement->execute();
+//        return $statement->fetchAll(PDO::FETCH_ASSOC);
+//    }
 
 
 }
