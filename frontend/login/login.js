@@ -1,5 +1,5 @@
 
-fetch("../backend/api/logout.php")
+fetch("../../backend/api/logout.php")
     .then(response => response.json)
     .then(data => console.log(data));
 

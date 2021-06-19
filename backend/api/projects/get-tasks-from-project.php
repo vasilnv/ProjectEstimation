@@ -18,7 +18,7 @@ try {
     $statement->execute(["projectId" => $projectId]);
     $estimations = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    $projectTime =0;
+    $projectTime = 0;
 
     for ($x = 0; $x < sizeof($users); $x++) {
         $projectTime += $estimations[$x]["estimation"];

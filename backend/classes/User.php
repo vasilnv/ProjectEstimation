@@ -47,5 +47,31 @@ class User
 
     }
 
+    public function checkPassword() {
+        $db = new DB();
+        $sql = "SELECT password FROM users WHERE username = :username";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+        $statement->execute(["username" => $this->username]);
+        $passDB = $statement->fetch(PDO::FETCH_ASSOC);
+        $flag = false;
+        if (password_verify($this->password, $passDB['password'])) {
+            $this->password = $passDB['password'];
+            $flag=true;
+        }
+        return $flag;
+
+    }
+
+    public function login() {
+        $db = new DB();
+        $sql = "SELECT users.id, users.name, users.lastname, users.username, roles.name as role, positions.name as position FROM users JOIN roles ON users.role = roles.id JOIN positions ON users.position = positions.id WHERE users.username = :username AND users.password = :password";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+
+        $statement->execute(["username" => $this->username, "password" => $this->password]);
+        return $statement->fetch();
+    }
+
 
 }
