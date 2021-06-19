@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("../../classes/Project.php");
 require_once("../../db/db.php");
 
 function sendUnauthorizedError() {
@@ -9,7 +10,6 @@ function sendUnauthorizedError() {
 }
 
 try {
-
     $phpInput = json_decode(file_get_contents('php://input'), true);
     $username = $phpInput["username"];
     $projectId = (int) $phpInput["project"];
@@ -22,19 +22,14 @@ try {
         sendUnauthorizedError();
     }
 
-    $db = new DB();
-    $sql = "SELECT manager FROM projects WHERE id = :projectId";
-    $connection = $db->getConnection();
-    $statement = $connection->prepare($sql);
-    $statement->execute(["projectId" => $projectId]);
-    $managerId = $statement->fetch()["manager"];
+    $project = new Project($projectId, null, null);
+    $managerId = $project->getProjectManagerId()["manager"];
 
     if($_SESSION["role"] == "Manager" && $managerId != $_SESSION["userId"]) {
         sendUnauthorizedError();
     }
 
-
-
+    $db = new DB();
     $sql = "DELETE user_projects FROM user_projects JOIN users on user_projects.userId = users.id WHERE user_projects.projectId = :projectId AND users.username = :username";
     $connection = $db->getConnection();
     $statement = $connection->prepare($sql);
