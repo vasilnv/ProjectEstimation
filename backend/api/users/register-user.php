@@ -1,5 +1,6 @@
 <?php
-require_once("../classes/User.php");
+require_once("../../classes/User.php");
+require_once("../../db/db.php");
 $phpInput = json_decode(file_get_contents('php://input'), true);
 $firstname = $phpInput["firstname"];
 $lastname = $phpInput["lastname"];
@@ -10,7 +11,7 @@ $role = $phpInput["role"];
 $position = $phpInput["position"];
 
 try {
-    $user = new User($firstname, $lastname, $username, $email, $password, $role, 0, $position);
+    $user = new User(null, $firstname, $lastname, $username, $email, $password, $role, 0, $position);
     $user->registerUser();
 } catch (PDOException $e) {
     http_response_code(500);

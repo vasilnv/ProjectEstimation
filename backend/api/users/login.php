@@ -1,13 +1,14 @@
 <?php
 session_start();
-require_once("../classes/User.php");
+require_once("../../classes/User.php");
+require_once("../../db/db.php");
 
 $phpInput = json_decode(file_get_contents('php://input'), true);
 $username = $phpInput["username"];
 $password = $phpInput["password"];
 
 try {
-    $user = new User(null, null, $username, null, $password, null, null, null);
+    $user = new User(null, null, null, $username, null, $password, null, null, null);
     $isPasswordCorrect=$user->checkPassword();
 
     if ($isPasswordCorrect) {
