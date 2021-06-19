@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 14, 2021 at 06:34 PM
+-- Generation Time: Jun 19, 2021 at 01:13 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `positions` (
-                             `id` int(11) NOT NULL,
-                             `name` varchar(255) NOT NULL,
-                             `weight` int(10) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `weight` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -38,7 +38,10 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`id`, `name`, `weight`) VALUES
-(1, 'Manager', 3);
+(1, 'Manager', 3),
+(2, 'Junior', 1),
+(3, 'Mid', 2),
+(4, 'Senior', 3);
 
 -- --------------------------------------------------------
 
@@ -47,9 +50,9 @@ INSERT INTO `positions` (`id`, `name`, `weight`) VALUES
 --
 
 CREATE TABLE `projects` (
-                            `id` int(11) NOT NULL,
-                            `name` varchar(255) NOT NULL,
-                            `manager` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `manager` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -57,7 +60,7 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `name`, `manager`) VALUES
-(2, 'test', 12);
+(17, 'TestProject', 18);
 
 -- --------------------------------------------------------
 
@@ -66,8 +69,8 @@ INSERT INTO `projects` (`id`, `name`, `manager`) VALUES
 --
 
 CREATE TABLE `roles` (
-                         `id` int(11) NOT NULL,
-                         `name` varchar(255) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -75,13 +78,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'Manager'),
-(2, 'Manager'),
-(3, ''),
-(4, 'dseffed'),
-(5, 'sdahfbjhdf'),
-(6, 'user'),
-(7, 'asdasdf');
+(6, 'Admin'),
+(8, 'User');
 
 -- --------------------------------------------------------
 
@@ -90,11 +88,11 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `tasks` (
-                         `id` int(11) NOT NULL,
-                         `project` int(11) NOT NULL,
-                         `name` varchar(255) NOT NULL,
-                         `description` varchar(255) NOT NULL,
-                         `estimation` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `project` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `estimation` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -102,11 +100,7 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `project`, `name`, `description`, `estimation`) VALUES
-(1, 2, 'sadffads', ' asdfadf', 3),
-(2, 2, 'sadfdw', 'adsfsda', 3),
-(3, 2, 'aaaaaaaaaaaa', 'aaaa ', 2),
-(4, 2, 'adfdsf', ' asdfsdf', 2),
-(5, 2, 'weeeeeeeeeeeeeeeeeeeeeee', ' sdfsdf', 3);
+(13, 17, 'testTask', 'test description', 5);
 
 -- --------------------------------------------------------
 
@@ -115,15 +109,15 @@ INSERT INTO `tasks` (`id`, `project`, `name`, `description`, `estimation`) VALUE
 --
 
 CREATE TABLE `users` (
-                         `id` int(11) NOT NULL,
-                         `name` varchar(255) NOT NULL,
-                         `lastname` varchar(255) NOT NULL,
-                         `username` varchar(255) NOT NULL,
-                         `password` varchar(255) NOT NULL,
-                         `email` varchar(255) NOT NULL,
-                         `role` int(11) NOT NULL,
-                         `position` int(11) NOT NULL,
-                         `capacity` int(10) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `role` int(11) NOT NULL,
+  `position` int(11) NOT NULL,
+  `capacity` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -131,8 +125,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastname`, `username`, `password`, `email`, `role`, `position`, `capacity`) VALUES
-(12, 'asdasdf', 'asdfsdf', 'vasilevv1', 'VaS998iL', 'vasil.n.v.1999@gmail.com', 6, 1, 0),
-(14, 'vnvasilev1', 'asdfsdf', 'vnvasilev1', 'VaS999iL', 'vasil.n.v.1999@gmail.com', 6, 1, 0);
+(18, 'Admin', 'Adminov', 'admin', '$2y$10$WB9HMrVz6L7QcTRg6q9ej.rRouXO6x2EJaB3jRN8tP.lRWmw/sLtS', 'vasil.n.v.1999@gmail.com', 6, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -141,9 +134,16 @@ INSERT INTO `users` (`id`, `name`, `lastname`, `username`, `password`, `email`, 
 --
 
 CREATE TABLE `user_projects` (
-                                 `userId` int(11) NOT NULL,
-                                 `projectId` int(11) NOT NULL
+  `userId` int(11) NOT NULL,
+  `projectId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_projects`
+--
+
+INSERT INTO `user_projects` (`userId`, `projectId`) VALUES
+(18, 17);
 
 --
 -- Indexes for dumped tables
@@ -153,33 +153,33 @@ CREATE TABLE `user_projects` (
 -- Indexes for table `positions`
 --
 ALTER TABLE `positions`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `projects`
 --
 ALTER TABLE `projects`
-    ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `manager` (`manager`);
 
 --
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tasks`
 --
 ALTER TABLE `tasks`
-    ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `project` (`project`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-    ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `position` (`position`),
   ADD KEY `role` (`role`);
 
@@ -187,7 +187,7 @@ ALTER TABLE `users`
 -- Indexes for table `user_projects`
 --
 ALTER TABLE `user_projects`
-    ADD PRIMARY KEY (`userId`,`projectId`);
+  ADD PRIMARY KEY (`userId`,`projectId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -197,31 +197,31 @@ ALTER TABLE `user_projects`
 -- AUTO_INCREMENT for table `positions`
 --
 ALTER TABLE `positions`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -231,26 +231,26 @@ ALTER TABLE `users`
 -- Constraints for table `projects`
 --
 ALTER TABLE `projects`
-    ADD CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `tasks`
 --
 ALTER TABLE `tasks`
-    ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`project`) REFERENCES `projects` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`project`) REFERENCES `projects` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-    ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`position`) REFERENCES `positions` (`id`),
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`position`) REFERENCES `positions` (`id`),
   ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`role`) REFERENCES `roles` (`id`);
 
 --
 -- Constraints for table `user_projects`
 --
 ALTER TABLE `user_projects`
-    ADD CONSTRAINT `user_projects_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `user_projects_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `user_projects_ibfk_2` FOREIGN KEY (`projectId`) REFERENCES `projects` (`id`);
 COMMIT;
 

@@ -16,9 +16,9 @@ function refresh() {
         var usersNotInProject = "";
         json.forEach(user => {
             if (user.isInProject == 1) {
-                usersInProject +=  `<li>${user.name} ${user.lastname}, [${user.username}]</li>`;
+                usersInProject +=  `<li class="user">${user.name} ${user.lastname}, [${user.username}]</li>`;
             } else {
-                usersNotInProject += `<li>${user.name} ${user.lastname}, [${user.username}]</li>`;
+                usersNotInProject += `<li class="user">${user.name} ${user.lastname}, [${user.username}]</li>`;
             }
         });
 
