@@ -1,31 +1,17 @@
 <?php
-require_once("../../db/db.php");
+require_once("../../classes/Project.php");
 
 try {
+    require_once("../../db/db.php");
     $projectId = $_GET["project"];
-    $db = new DB();
-    $sql = "SELECT id FROM tasks WHERE project = :projectId";
-    $connection = $db->getConnection();
+    $project = new Project($projectId, null, null);
 
-    $statement = $connection->prepare($sql);
-    $statement->execute(["projectId" => $projectId]);
-    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $tasks = $project->selectTasks();
 
-    $sql = "SELECT estimation FROM tasks WHERE project = :projectId";
-    $connection = $db->getConnection();
-
-    $statement = $connection->prepare($sql);
-    $statement->execute(["projectId" => $projectId]);
-    $estimations = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    $projectTime = 0;
-
-    for ($x = 0; $x < sizeof($users); $x++) {
-        $projectTime += $estimations[$x]["estimation"];
-    }
+    $projectEstimation = $project->getProjectEstimation(sizeof($tasks));
 
     http_response_code(200);
-    echo json_encode(["status" => "SUCCESS", "numberOfTasks" => sizeof($users), "estimatedProjectTime" => $projectTime]);
+    echo json_encode(["status" => "SUCCESS", "numberOfTasks" => sizeof($tasks), "estimatedProjectTime" => $projectEstimation]);
 
 } catch (PDOException $e) {
     http_response_code(500);

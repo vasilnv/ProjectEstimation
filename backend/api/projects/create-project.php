@@ -7,7 +7,7 @@ $phpInput = json_decode(file_get_contents('php://input'), true);
 $projectName = $phpInput["projectName"];
 
 try {
-    $project = new Project($projectName, null);
+    $project = new Project(null, $projectName, null);
     $db = new DB();
     $isProjectCreated = $project->checkIfProjectExists();
     if ($isProjectCreated) {
