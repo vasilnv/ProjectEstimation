@@ -46,7 +46,6 @@ class User
     }
 
     public function checkPassword() {
-        require_once("../db/db.php");
         $db = new DB();
         $sql = "SELECT password FROM users WHERE username = :username";
         $connection = $db->getConnection();
@@ -63,7 +62,6 @@ class User
     }
 
     public function login() {
-        require_once("../db/db.php");
         $db = new DB();
         $sql = "SELECT users.id, users.name, users.lastname, users.username, roles.name as role, positions.name as position FROM users JOIN roles ON users.role = roles.id JOIN positions ON users.position = positions.id WHERE users.username = :username AND users.password = :password";
         $connection = $db->getConnection();
