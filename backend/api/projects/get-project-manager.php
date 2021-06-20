@@ -1,21 +1,11 @@
 <?php
-require_once("../../db/db.php");
+require_once("../../classes/Project.php");
 
 try {
+    require_once("../../db/db.php");
     $projectId = $_GET["project"];
-    $db = new DB();
-    $sql = "SELECT manager FROM projects WHERE id = :projectId";
-    $connection = $db->getConnection();
-    $statement = $connection->prepare($sql);
-
-    $statement->execute(["projectId" => $projectId]);
-    $managerId = $statement->fetch();
-
-    $sql = "SELECT name FROM users WHERE id = :managerId;";
-    $statement = $connection->prepare($sql);
-    $statement->execute(["managerId" => $managerId["manager"]]);
-    $managerName = $statement->fetch(PDO::FETCH_ASSOC);
-
+    $project = new Project($projectId, null, null);
+    $managerName = $project->getProjectManager();
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "managerName" => $managerName["name"]]);
 

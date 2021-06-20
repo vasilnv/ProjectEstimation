@@ -72,7 +72,7 @@ btn.addEventListener('click', (event) => {
     console.log(isValid);
     if (isValid) {
 
-        fetch('../../backend/api/register-user.php', {
+        fetch('../../backend/api/users/register-user.php', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {

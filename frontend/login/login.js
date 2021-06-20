@@ -1,5 +1,5 @@
 
-fetch("../../backend/api/logout.php")
+fetch("../../backend/api/users/logout.php")
     .then(response => response.json)
     .then(data => console.log(data));
 
@@ -38,7 +38,7 @@ btn.addEventListener('click', (event) => {
 
     if (isValid) {
 
-        fetch('../../backend/api/login.php', {
+        fetch('../../backend/api/users/login.php', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {

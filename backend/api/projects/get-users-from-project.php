@@ -1,28 +1,12 @@
 <?php
-require_once("../../db/db.php");
+require_once("../../classes/Project.php");
 
 try {
+    require_once("../../db/db.php");
     $projectId = $_GET["project"];
-    $db = new DB();
-    $sql = "SELECT userId FROM user_projects WHERE projectId = :projectId";
-    $connection = $db->getConnection();
-
-    $statement = $connection->prepare($sql);
-    $statement->execute(["projectId" => $projectId]);
-    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    $totalCapacity=0;
-    for ($x = 0; $x < sizeof($users); $x++) {
-        $userId = $users[$x]["userId"];
-        $sql = "SELECT capacity FROM users WHERE id = :userId;";
-        $connection = $db->getConnection();
-
-        $statement = $connection->prepare($sql);
-        $statement->execute(["userId" => $userId]);
-        $user = $statement->fetch(PDO::FETCH_ASSOC);
-        $totalCapacity += $user["capacity"];
-    }
-
+    $project = new Project($projectId, null, null);
+    $users = $project->getUsers();
+    $totalCapacity = $project->getProjectTotalUserCapacity($users);
 
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "numberOfUsers" => sizeof($users), "totalCapacity"=>$totalCapacity]);

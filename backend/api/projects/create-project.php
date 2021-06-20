@@ -21,7 +21,8 @@ try {
         sendUnauthorizedError();
     }
 
-    $project = new Project($projectName, null);
+    $project = new Project(null, $projectName, null);
+
     $db = new DB();
     $isProjectCreated = $project->checkIfProjectExists();
     if ($isProjectCreated) {
