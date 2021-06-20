@@ -1,15 +1,11 @@
 <?php
-require_once("../../db/db.php");
+require_once("../../classes/Task.php");
 
+$projectId = $_GET["project"];
 try {
-    $projectId = $_GET["project"];
-    $db = new DB();
-    $sql = "SELECT * FROM tasks WHERE project = :projectId";
-    $connection = $db->getConnection();
-
-    $statement = $connection->prepare($sql);
-    $statement->execute(["projectId" => $projectId]);
-    $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+    require_once("../../db/db.php");
+    $taskSelector = new Task(null, $projectId, null, null, null);
+    $tasks = $taskSelector->getAllTasksForProject();
 
     http_response_code(200);
     echo json_encode($tasks);

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("../../db/db.php");
+require_once("../../classes/User.php");
 
 function sendUnauthorizedError() {
     http_response_code(403);
@@ -22,12 +23,8 @@ try {
         sendUnauthorizedError();
     }
 
-    $db = new DB();
-    $sql = "UPDATE users set position=:position where id=:userId";
-    $connection = $db->getConnection();
-    $statement = $connection->prepare($sql);
-
-    $statement->execute(["position" => $position, "userId" => $userId]);
+    $user = new User($userId, null, null, null, null, null, null, null, null);
+    $user->changeRole($position);
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "message" => "Успешна промяна на позицията"]);
 } catch (PDOException $e) {
