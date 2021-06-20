@@ -17,7 +17,7 @@ function refresh() {
         .then (response => response.json())
         .then(json => {
             document.getElementById("devsNumber").innerHTML = json.numberOfUsers;
-            document.getElementById("coefficient").innerHTML = Math.log(json.estimatedTime/json.totalCapacity);
+            document.getElementById("coefficient").innerHTML = Math.log(json.estimatedTime * 24 /json.totalCapacity);
 
         })
 
