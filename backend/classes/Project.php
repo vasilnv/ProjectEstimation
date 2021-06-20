@@ -129,4 +129,36 @@ class Project
         }
         return $totalCapacity;
     }
+
+    public static function getProjectsManagers() {
+        $db = new DB();
+        $sql = "SELECT users.name as firstname, users.lastname, users.username, projects.name as projectName FROM projects JOIN users ON users.id = projects.manager";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    public static function getProjectsTasks() {
+        $db = new DB();
+        $sql = "SELECT tasks.name as taskName, tasks.estimation, projects.name as projectName FROM projects JOIN tasks ON tasks.project = projects.id";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getProjectsUsersWithoutManager() {
+        $db = new DB();
+        $sql = "SELECT users.name as firstname, users.lastname, users.username, projects.name as projectName FROM projects JOIN user_projects ON user_projects.projectId = projects.id AND user_projects.userId <> projects.manager JOIN users ON user_projects.userId = users.id;";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

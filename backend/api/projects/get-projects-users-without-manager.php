@@ -1,14 +1,9 @@
 <?php
 require_once("../../db/db.php");
+require_once("../../classes/Project.php");
 
 try {
-    $db = new DB();
-    $sql = "SELECT users.name as firstname, users.lastname, users.username, projects.name as projectName FROM projects JOIN user_projects ON user_projects.projectId = projects.id AND user_projects.userId <> projects.manager JOIN users ON user_projects.userId = users.id;";
-    $connection = $db->getConnection();
-    $statement = $connection->prepare($sql);
-
-    $statement->execute();
-    $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $data=Project::getProjectsUsersWithoutManager();
     if (sizeof($data) != 0) {
         http_response_code(200);
         echo json_encode($data);
