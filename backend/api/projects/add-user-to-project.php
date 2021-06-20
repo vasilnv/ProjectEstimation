@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once("../../db/db.php");
+require_once("../../classes/Project.php");
+require_once("../../classes/UsersProjects.php");
 
 function sendUnauthorizedError() {
     http_response_code(403);
@@ -21,22 +23,16 @@ try {
         sendUnauthorizedError();
     }
 
-    $db = new DB();
-    $sql = "SELECT manager FROM projects WHERE id = :projectId";
-    $connection = $db->getConnection();
-    $statement = $connection->prepare($sql);
-    $statement->execute(["projectId" => $projectId]);
-    $managerId = $statement->fetch()["manager"];
+    $project = new Project($projectId, null, null);
+    $managerId = $project->getProjectManagerId()["manager"];
 
     if($_SESSION["role"] == "Manager" && $managerId != $_SESSION["userId"]) {
         sendUnauthorizedError();
     }
 
-    $sql = "INSERT INTO user_projects (userId, projectId) SELECT id, :projectId FROM users WHERE username = :username";
-    $connection = $db->getConnection();
-    $statement = $connection->prepare($sql);
 
-    $statement->execute(["projectId" => $projectId, "username" => $username]);
+    $usersProjects = new UsersProjects(null, $projectId);
+    $usersProjects->addUserToProject($username);
 
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "message" => "Успешно добавен служител към проект", "statusCode" => 200]);

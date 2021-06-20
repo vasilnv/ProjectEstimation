@@ -2,6 +2,8 @@
 session_start();
 require_once("../../classes/Project.php");
 require_once("../../db/db.php");
+require_once("../../classes/UsersProjects.php");
+
 
 function sendUnauthorizedError() {
     http_response_code(403);
@@ -29,12 +31,8 @@ try {
         sendUnauthorizedError();
     }
 
-    $db = new DB();
-    $sql = "DELETE user_projects FROM user_projects JOIN users on user_projects.userId = users.id WHERE user_projects.projectId = :projectId AND users.username = :username";
-    $connection = $db->getConnection();
-    $statement = $connection->prepare($sql);
-
-    $statement->execute(["projectId" => $projectId, "username" => $username]);
+    $usersProjects = new UsersProjects(null, $projectId);
+    $usersProjects->deleteUserFromProject($username);
 
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "message" => "Успешно премахнат служител от проект", "statusCode" => 200]);
