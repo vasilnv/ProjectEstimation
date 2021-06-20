@@ -1,0 +1,18 @@
+.estimation {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 50%;
+    margin: auto;
+    border-bottom: 1px dotted #172A3A;
+    margin-bottom: 5px;
+    font-size: 25px;
+    color: #004346;
+}   
+
+.estimation-value{
+    text-align: right;
+}
+
+.estimation-name label {
+    text-align: left;
+}
