@@ -1,6 +1,6 @@
 Final project for the Web Technologies subject at FMI, Sofia University
 
-##Документация:
+## Документация:
 
 TaskManagement, ProjectEstimation(Васил Василев), ExportProject, ProjectManagement(Владислав Стефанов),
 UserManagement(Живко Георгиев)
@@ -10,7 +10,7 @@ UserManagement(Живко Георгиев)
 ако проектът се намира някъде в директорията htdocs, той може да бъде достъпен на
 http://localhost/<projectDir>/project/frontend
 
-###project/frontend
+### project/frontend
 
 В project/frontend се намират файловете свързани с frontend частта на приложението.
 В различните директории(login, projects, register, tasks, users) се намират html, css и javascript файлове,
@@ -21,7 +21,7 @@ http://localhost/<projectDir>/project/frontend
 
 В assets се намира логото на приложението, а в common.css са изнесени части от css-а които ги имаме на всяка страница.
 
-###project/backend
+### project/backend
 
 Директорията е разбита на три поддиректории. 
 
