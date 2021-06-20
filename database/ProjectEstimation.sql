@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `positions` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `weight` int(10) NOT NULL
+  `weight` double(10, 2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -38,10 +38,10 @@ CREATE TABLE `positions` (
 --
 
 INSERT INTO `positions` (`id`, `name`, `weight`) VALUES
-(1, 'Manager', 3),
-(2, 'Junior', 1),
-(3, 'Mid', 2),
-(4, 'Senior', 3);
+(1, 'Manager', 0.75),
+(2, 'Junior', 0.5),
+(3, 'Mid', 1),
+(4, 'Senior', 1.5);
 
 -- --------------------------------------------------------
 

@@ -119,13 +119,13 @@ class Project
         $totalCapacity=0;
         for ($x = 0; $x < sizeof($users); $x++) {
             $userId = $users[$x]["userId"];
-            $sql = "SELECT capacity FROM users WHERE id = :userId;";
+            $sql = "SELECT capacity, weight FROM users JOIN positions ON position = positions.id WHERE users.id = :userId;";
             $connection = $db->getConnection();
 
             $statement = $connection->prepare($sql);
             $statement->execute(["userId" => $userId]);
             $user = $statement->fetch(PDO::FETCH_ASSOC);
-            $totalCapacity += $user["capacity"];
+            $totalCapacity += $user["capacity"] * $user["weight"];
         }
         return $totalCapacity;
     }
