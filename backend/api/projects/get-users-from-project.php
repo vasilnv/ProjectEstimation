@@ -8,8 +8,11 @@ try {
     $users = $project->getUsers();
     $totalCapacity = $project->getProjectTotalUserCapacity($users);
 
+    $tasks = $project->selectTasks();
+    $projectEstimation = $project->getProjectEstimation(sizeof($tasks));
+
     http_response_code(200);
-    echo json_encode(["status" => "SUCCESS", "numberOfUsers" => sizeof($users), "totalCapacity"=>$totalCapacity]);
+    echo json_encode(["status" => "SUCCESS", "numberOfUsers" => sizeof($users), "totalCapacity"=>$totalCapacity, "estimatedTime" => $projectEstimation]);
 
 } catch (PDOException $e) {
     http_response_code(500);
