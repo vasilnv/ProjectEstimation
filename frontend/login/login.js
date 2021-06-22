@@ -8,7 +8,7 @@ btn.addEventListener('click', (event) => {
     document.getElementById("msg_exists").style.display = 'none';
 
     var isValid = true;
-    if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,10}$'))) {
+    if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,50}$'))) {
         document.getElementById('error_password').style.display = 'block'
         document.getElementById('password').style.borderColor = '#B0706D'
         document.getElementById('error_password').classList.remove("err_hidden");

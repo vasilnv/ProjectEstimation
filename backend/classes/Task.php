@@ -45,4 +45,14 @@ class Task
 
     }
 
+    public function getTaskProjectById() {
+        $db = new DB();
+        $sql = "SELECT project FROM tasks WHERE id = :id";
+        $connection = $db->getConnection();
+        $statement = $connection->prepare($sql);
+        $statement->execute(["id" => $this->id]);
+        return $statement->fetch()["project"];
+
+    }
+
 }

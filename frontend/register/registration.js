@@ -14,7 +14,7 @@ btn.addEventListener('click', (event) => {
         document.getElementById('email').style.borderColor = '#C3CDC0'
         document.getElementById('error_email').classList.remove('error')
     }
-    if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,10}$'))){
+    if (!document.getElementById("password").value.match(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,50}$'))){
         document.getElementById('error_password').style.display = 'block'
         document.getElementById('password').style.borderColor = '#B0706D'
         document.getElementById('error_password').classList.remove("err_hidden");
@@ -65,10 +65,8 @@ btn.addEventListener('click', (event) => {
         email: document.getElementById("email").value,
         username: document.getElementById("username").value,
         password: document.getElementById("password").value,
-        position: document.getElementById("select-position").value,
-        role: "user"
+        position: document.getElementById("select-position").value
     };
-
     console.log(isValid);
     if (isValid) {
 

@@ -17,7 +17,7 @@ try {
         sendUnauthorizedError();
     }
 
-    if($_SESSION["role"] != "Admin" && $_SESSION["role"] != "Manager") {
+    if($_SESSION["role"] != "Admin" && $_SESSION["position"] != "Manager") {
         sendUnauthorizedError();
     }
 

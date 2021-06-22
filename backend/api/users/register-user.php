@@ -7,11 +7,18 @@ $lastname = $phpInput["lastname"];
 $username = $phpInput["username"];
 $password = password_hash($phpInput["password"], PASSWORD_DEFAULT);
 $email = $phpInput["email"];
-$role = $phpInput["role"];
 $position = $phpInput["position"];
 
 try {
-    $user = new User(null, $firstname, $lastname, $username, $email, $password, $role, 0, $position);
+    $db = new DB();
+    $sql = "SELECT id FROM positions WHERE name = :position";
+    $connection = $db->getConnection();
+    $statement = $connection->prepare($sql);
+
+    $statement->execute(["position"=>$position]);
+    $positionId = $statement->fetch();
+
+    $user = new User(null, $firstname, $lastname, $username, $email, $password, 8, 0, $positionId["id"]);
     $user->registerUser();
 } catch (PDOException $e) {
     http_response_code(500);

@@ -3,22 +3,12 @@ session_start();
 $phpInput = json_decode(file_get_contents('php://input'), true);
 $newCapacity = $phpInput["newCapacity"];
 
-function sendUnauthorizedError() {
-    http_response_code(403);
-    echo json_encode(["status" => "UNAUTHORIZED", "message" => "Липсват права!", "statusCode" => 403]);
-    exit();
-}
-
 try {
 
-    if (!isset($_SESSION['role']) || !isset($_SESSION['userId'])) {
-        sendUnauthorizedError();
-    }
-
-    $userId= $_SESSION['userId'];
-
-    if($_SESSION["role"] != "Admin" && $_SESSION["role"] != "Manager") {
-        sendUnauthorizedError();
+    if (!isset($_SESSION['userId'])) {
+        http_response_code(401);
+        echo json_encode(["status" => "UNAUTHORIZED", "message" => "Не си вписан в акаунт!", "statusCode" => 401]);
+        exit();
     }
 
     if($newCapacity < 0) {

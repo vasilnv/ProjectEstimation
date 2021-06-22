@@ -8,8 +8,8 @@ try {
         http_response_code(200);
         echo json_encode($data);
     } else {
-        http_response_code(400);
-        echo json_encode(["status" => "ERROR", "message" => "Няма проекти", "statusCode" => 400]);
+        http_response_code(200);
+        echo json_encode([]);
     }
 } catch (PDOException $e) {
     http_response_code(500);

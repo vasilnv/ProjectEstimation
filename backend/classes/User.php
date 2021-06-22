@@ -34,7 +34,7 @@ class User
         $user = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         if (sizeof($user) == 0) {
-            $sql = "INSERT INTO users (name, lastname, username, password, email, role, position, capacity) VALUES (:name, :lastname, :username, :password, :email, 6, 1, 0);";
+            $sql = "INSERT INTO users (name, lastname, username, password, email, role, position, capacity) VALUES (:name, :lastname, :username, :password, :email, 8, $this->position, 0);";
             $connection = $db->getConnection();
             $statement = $connection->prepare($sql);
             $statement->execute(["name"=>$this->name, "lastname" => $this->lastName, "username" => $this->username, "password" => $this->password, "email" => $this->email]);
@@ -80,7 +80,7 @@ class User
         $statement->execute(["capacity" => $newCapacity, "userId" => $this->id]);
     }
 
-    public function changeRole($newPosition) {
+    public function changePosition($newPosition) {
         $db = new DB();
         $sql = "UPDATE users set position=:position where id=:userId";
         $connection = $db->getConnection();

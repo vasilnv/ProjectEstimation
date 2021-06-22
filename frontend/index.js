@@ -26,7 +26,10 @@ btnProject.addEventListener('click', (event) => {
             }
         })
             .then(response => response.json())
-            .then(data=>alert(data.message))
+            .then(data=> {
+                location.reload();
+                alert(data.message);
+            })
 
     }
 });

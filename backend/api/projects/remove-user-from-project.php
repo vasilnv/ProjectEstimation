@@ -20,14 +20,14 @@ try {
         sendUnauthorizedError();
     }
 
-    if($_SESSION["role"] != "Admin" && $_SESSION["role"] != "Manager") {
+    if($_SESSION["role"] != "Admin" && $_SESSION["position"] != "Manager") {
         sendUnauthorizedError();
     }
 
     $project = new Project($projectId, null, null);
     $managerId = $project->getProjectManagerId()["manager"];
 
-    if($_SESSION["role"] == "Manager" && $managerId != $_SESSION["userId"]) {
+    if($_SESSION["role"] != "Admin" && $_SESSION["position"] == "Manager" && $managerId != $_SESSION["userId"]) {
         sendUnauthorizedError();
     }
 

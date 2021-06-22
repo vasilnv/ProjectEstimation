@@ -19,12 +19,12 @@ try {
         sendUnauthorizedError();
     }
 
-    if($_SESSION["role"] != "Admin" && $_SESSION["role"] != "Manager") {
+    if($_SESSION["role"] != "Admin" && $_SESSION["position"] != "Manager") {
         sendUnauthorizedError();
     }
 
     $user = new User($userId, null, null, null, null, null, null, null, null);
-    $user->changeRole($position);
+    $user->changePosition($position);
     http_response_code(200);
     echo json_encode(["status" => "SUCCESS", "message" => "Успешна промяна на позицията"]);
 } catch (PDOException $e) {

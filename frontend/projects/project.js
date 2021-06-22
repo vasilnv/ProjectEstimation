@@ -67,6 +67,7 @@ function refreshTasks() {
         .then(response => response.json())
         .then(json => {
             var tasksElement = document.getElementById("project-tasks");
+            tasksElement.innerHTML = "";
             json.forEach(task => {
                 let li = document.createElement("li");
                 let estimationElement = document.createElement("h2");
@@ -85,8 +86,14 @@ function refreshTasks() {
 
                 btnDelete.addEventListener('click', (event) => {
                     fetch("../../backend/api/tasks/delete-task.php?task=" + `${task.id}`)
-                        .then(response=>response.json)
-                        .then(data=>console.log(data));
+                        .then(response=>response.json())
+                        .then(data=>{
+                            if (data.statusCode === 200) {
+                                refreshTasks();
+                            } else {
+                                alert(data.message);
+                            }
+                        });
                 });
             })
         });
